@@ -20,3 +20,4 @@ cabal.project.local
 backend/static
 *.js_hi
 *.js_o
+*.sqlite3

@@ -3,11 +3,14 @@
 module Model where
 
 import ClassyPrelude.Yesod
-import Database.Persist.Quasi
+-- import Database.Persist
+-- import Database.Persist.Sqlite
+-- import Database.Persist.TH
 
--- You can define all of your database entities in the entities file.
--- You can find more information on persistent and how to declare entities
--- at:
--- http://www.yesodweb.com/book/persistent/
-share [mkPersist sqlSettings, mkMigrate "migrateAll"]
-    $(persistFileWith lowerCaseSettings "config/models")
+share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
+Count
+    keyName  Text
+    keyCount Int
+    UniqueKeyName keyName
+    deriving Show
+|]

@@ -85,7 +85,6 @@ library:
     - Settings.StaticFiles
     - Handler.Common
     - Handler.Home
-    - Handler.Comment
   when:
     - condition: flag(dev)
       then:
