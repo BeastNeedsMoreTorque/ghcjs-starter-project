@@ -83,6 +83,7 @@ library:
     - Model
     - Settings
     - Settings.StaticFiles
+    - Handler.API
     - Handler.Common
     - Handler.Home
   when:

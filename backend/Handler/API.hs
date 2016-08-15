@@ -7,7 +7,6 @@ import Import
 import Control.Monad.Logger
 import Database.Persist.Sql
 import Database.Persist.Sqlite
-import Model
 
 type ControlIO m = (MonadIO m, MonadBaseControl IO m)
 
@@ -32,7 +31,7 @@ incrementCount keyName = do
       let countVal = Count keyName 1
       countKey <- insert countVal
       return (Entity countKey countVal)
-    (Just eCount@(Entity countKey Count{..})) -> do
+    (Just (Entity countKey Count{..})) -> do
       update countKey [CountKeyCount +=. 1]
       return (Entity countKey (Count countKeyName (countKeyCount + 1)))
 
