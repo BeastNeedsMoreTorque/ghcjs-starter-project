@@ -32,9 +32,23 @@ $ make frontend-watch
 
 Keep in mind `GHCJSi` hasn't had quite as much time to get a shake-out as `GHCi` so if you run into any issues, _please_ report it to [the GHCJS project](https://github.com/ghcjs/ghcjs)!
 
+First, go to frontend directory.
 
 ```
-$ cd frontend && stack exec -- ghcjs --interactive
+$ cd frontend
+```
+
+Then, launch REPL.
+
+```
+$ stack ghci
+```
+
+If the version of stack is below 1.2.0, it's possible that the above command doesn't work.
+If the command above didn't work, you could try the following command.
+
+```
+$ stack exec -- ghcjs --interactive
 ```
 
 You should see a warning about:
@@ -46,30 +60,42 @@ socket.io not found, browser session not available
 Install socket.io with Node.js:
 
 ```
-$ sudo npm install -g socket.io
+$ npm install socket.io
 ```
 
-Then set your `NODE_PATH` so GHCJS can find your node packages. My global `node_modules` is in `/usr/local/lib`, so it looked like:
+Then, export `NODE_PATH` permanently for the current shell session, so GHCJS can find your node packages.
 
 ```
-export NODE_PATH=/usr/local/lib/node_modules
+export NODE_PATH=$(pwd)/node_modules
 ```
 
-Then starting GHCJS should be free of the socket.io warning:
+Now, starting GHCJS should be free of the socket.io warning:
 
 ```
-$ stack exec -- ghcjs --interactive           
+$ stack ghci
 GHCJSi, version 0.2.0-7.10.3: http://www.github.com/ghcjs/ghcjs/  :? for help
-Prelude> 
+Prelude>
 ```
 
-Then connect your browser to the exposed web server at `localhost:6400`, and load the `src` dir to see it in action. There'll be a slight delay the first time you `GHCJSi` to evaluate something, but then it should work fine:
+Alternatively, instead of exporting `NODE_PATH`, you could execute the following command
 
 ```
-Prelude> :l src/Lib.hs 
+$ NODE_PATH=./node_modules stack ghci
+```
+
+If you didn't want to care about installing socket.io and setting `NODE_PATH`, you could just execute the following command in the directory that contains `Makefile`.
+
+```
+$ make ghcjsi
+```
+
+Now, connect your browser to the exposed web server at `localhost:6400`, and load the `src` dir to see it in action. There'll be a slight delay the first time you `GHCJSi` to evaluate something, but then it should work fine:
+
+```
+Prelude> :l src/Lib.hs
 [1 of 1] Compiling Lib              ( src/Lib.hs, interpreted )
 Ok, modules loaded: Lib.
-*Lib> :set -XOverloadedStrings 
+*Lib> :set -XOverloadedStrings
 *Lib> console_log "blah"
 *Lib>
 ```
