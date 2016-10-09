@@ -32,7 +32,7 @@ $ make frontend-watch
 
 Keep in mind `GHCJSi` hasn't had quite as much time to get a shake-out as `GHCi` so if you run into any issues, _please_ report it to [the GHCJS project](https://github.com/ghcjs/ghcjs)!
 
-First go to frontend directory.
+First, go to frontend directory.
 
 ```
 $ cd frontend
@@ -63,13 +63,13 @@ Install socket.io with Node.js:
 $ npm install socket.io
 ```
 
-Then export `NODE_PATH` permanently for the current shell session, so GHCJS can find your node packages.
+Then, export `NODE_PATH` permanently for the current shell session, so GHCJS can find your node packages.
 
 ```
 export NODE_PATH=$(pwd)/node_modules
 ```
 
-Then starting GHCJS should be free of the socket.io warning:
+Now, starting GHCJS should be free of the socket.io warning:
 
 ```
 $ stack ghci
@@ -83,7 +83,11 @@ Alternatively, instead of exporting `NODE_PATH`, you could execute the following
 $ NODE_PATH=./node_modules stack ghci
 ```
 
-If you didn't want to care about installing socket.io and setting `NODE_PATH`, you could just execute `make ghcjsi` in the directory that contains `Makefile`.
+If you didn't want to care about installing socket.io and setting `NODE_PATH`, you could just execute the following command in the directory that contains `Makefile`.
+
+```
+$ make ghcjsi
+```
 
 Now, connect your browser to the exposed web server at `localhost:6400`, and load the `src` dir to see it in action. There'll be a slight delay the first time you `GHCJSi` to evaluate something, but then it should work fine:
 
