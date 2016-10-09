@@ -21,3 +21,4 @@ backend/static
 *.js_hi
 *.js_o
 *.sqlite3
+frontend/node_modules/
