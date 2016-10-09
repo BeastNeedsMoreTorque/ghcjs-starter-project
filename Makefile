@@ -12,7 +12,7 @@ frontend-watch:
 	cd frontend && stack build --file-watch --fast
 
 ghcjsi:
-	cd frontend && NODE_PATH=$(NODE_PATH) stack exec -- ghcjs --interactive
+	cd frontend && NODE_PATH=$(NODE_PATH) stack ghci
 
 backend:
 	cd backend && stack build

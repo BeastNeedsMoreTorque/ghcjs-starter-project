@@ -32,6 +32,12 @@ $ make frontend-watch
 
 Keep in mind `GHCJSi` hasn't had quite as much time to get a shake-out as `GHCi` so if you run into any issues, _please_ report it to [the GHCJS project](https://github.com/ghcjs/ghcjs)!
 
+```
+$ cd frontend && stack ghci
+```
+
+If the version of stack is below 1.2.0, it's possible that the above commands don't work.
+If the commands above didn't work, you could try the following commands.
 
 ```
 $ cd frontend && stack exec -- ghcjs --interactive
@@ -58,7 +64,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 Then starting GHCJS should be free of the socket.io warning:
 
 ```
-$ stack exec -- ghcjs --interactive           
+$ stack ghci
 GHCJSi, version 0.2.0-7.10.3: http://www.github.com/ghcjs/ghcjs/  :? for help
 Prelude> 
 ```
